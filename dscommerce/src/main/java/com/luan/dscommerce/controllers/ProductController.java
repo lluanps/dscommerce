@@ -1,6 +1,7 @@
 package com.luan.dscommerce.controllers;
 
 import com.luan.dscommerce.dto.ProductDTO;
+import com.luan.dscommerce.entities.Product;
 import com.luan.dscommerce.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,4 +39,9 @@ public class ProductController {
         return ResponseEntity.created(uri).body(dto);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO dto) {
+        dto = service.update(id, dto);
+        return ResponseEntity.ok(dto);
+    }
 }
